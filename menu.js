@@ -68,12 +68,16 @@ if (swipeMenu) {
   })
 
   swipeMenu.addEventListener('touchend', function (event) {
-    touchendY = event.changedTouches[0].screenY;
+    //touchendY = event.changedTouches[0].screenY;
 
     if ((movedY - touchstartY > 100)) {
       closeMenu();
     } else {
       swipeMenu.style.transform = `translateY(0)`;
     }
+
+    touchstartY = 0;
+    movedY = 0;
+    //touchendY = 0;
   }, false)
 }
