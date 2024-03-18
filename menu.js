@@ -4,14 +4,22 @@ const swipeMenu = document.querySelector(".swipe-menu");
 const swipeMenuScrollItem = swipeMenu && swipeMenu.querySelector(".swipe-menu__scroll-item")
 
 function closeMenu() {
+  swipeMenu.style.transition = "all 0.3s ease";
+
   html.style.overflow = "visible";
   menuButton.classList.remove("--active");
   swipeMenu.classList.remove("--active");
 
   swipeMenu.style.transform = 'translateY(150%)';
+
+  setTimeout(() => {
+    swipeMenu.style.transition = "none";
+  }, 300)
 }
 
 menuButton.addEventListener("click", () => {
+  swipeMenu.style.transition = "all 0.3s ease";
+
   if (html.style.overflow === "hidden") {
     html.style.overflow = "visible";
     swipeMenu.style.transform = 'translateY(150%)';
@@ -22,33 +30,11 @@ menuButton.addEventListener("click", () => {
 
   menuButton.classList.toggle("--active");
   swipeMenu.classList.toggle("--active");
+
+  setTimeout(() => {
+    swipeMenu.style.transition = "none";
+  }, 300)
 })
-
-/*
-// Get a reference to an element
-var manager = new Hammer.Manager(swipeMenuScrollItem);
-
-// Create a recognizer
-var Swipe = new Hammer.Swipe();
-
-// Add the recognizer to the manager
-manager.add(Swipe);
-
-deltaY = 0;
-
-// Subscribe to a desired event
-manager.on('swipedown', function (e) {
-  deltaY = deltaY + e.deltaY;
-  //var direction = e.offsetDirection;
-  var translateY = 'translateY(' + deltaY + 'px)';
-
-  swipeMenu.style.transform = translateY;
-
-  if (deltaY > 100) {
-    closeMenu();
-  }
-});
-*/
 
 let touchstartY = 0;
 let movedY = 0;
@@ -68,7 +54,7 @@ if (swipeMenu) {
   })
 
   swipeMenu.addEventListener('touchend', function (event) {
-    //touchendY = event.changedTouches[0].screenY;
+    swipeMenu.style.transition = "all 0.3s ease";
 
     if ((movedY - touchstartY > 100)) {
       closeMenu();
@@ -78,6 +64,9 @@ if (swipeMenu) {
 
     touchstartY = 0;
     movedY = 0;
-    //touchendY = 0;
+
+    setTimeout(() => {
+      swipeMenu.style.transition = "none";
+    }, 300)
   }, false)
 }
