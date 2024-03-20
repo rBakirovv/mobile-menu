@@ -1,7 +1,10 @@
 const html = document.querySelector("html");
 const menuButton = document.querySelector(".mobile-menu-button");
 const swipeMenu = document.querySelector(".swipe-menu");
-const swipeMenuScrollItem = swipeMenu && swipeMenu.querySelector(".swipe-menu__scroll-item")
+const swipeMenuContainer = document.querySelector(".swipe-menu__container");
+const swipeMenuScrollItem = swipeMenu && swipeMenu.querySelector(".swipe-menu__scroll-item");
+
+//console.log(swipeMenuContainer.scrollTop);
 
 function closeMenu() {
   swipeMenu.style.transition = "all 0.3s ease";
@@ -53,10 +56,10 @@ if (swipeMenu) {
     }
   })
 
-  swipeMenu.addEventListener('touchend', function (event) {
+  swipeMenuScrollItem.addEventListener('touchend', function () {
     swipeMenu.style.transition = "all 0.3s ease";
 
-    if ((movedY - touchstartY > 100)) {
+    if (movedY - touchstartY > 100) {
       closeMenu();
     } else {
       swipeMenu.style.transform = `translateY(0)`;
@@ -68,5 +71,42 @@ if (swipeMenu) {
     setTimeout(() => {
       swipeMenu.style.transition = "none";
     }, 300)
+  }, false)
+}
+
+if (swipeMenu) {
+  swipeMenu.addEventListener('touchstart', function (event) {
+    if (swipeMenuContainer.scrollTop === 0) {
+      touchstartY = event.changedTouches[0].screenY;
+    }
+  }, false)
+
+  swipeMenu.addEventListener('touchmove', function (event) {
+    if (swipeMenuContainer.scrollTop === 0) {
+      movedY = event.changedTouches[0].screenY;
+
+      if (movedY - touchstartY > 0) {
+        swipeMenu.style.transform = `translateY(${movedY - touchstartY}px)`;
+      }
+    }
+  })
+
+  swipeMenu.addEventListener('touchend', function () {
+    if (swipeMenuContainer.scrollTop === 0) {
+      swipeMenu.style.transition = "all 0.3s ease";
+
+      if (movedY - touchstartY > 100) {
+        closeMenu();
+      } else {
+        swipeMenu.style.transform = `translateY(0)`;
+      }
+
+      touchstartY = 0;
+      movedY = 0;
+
+      setTimeout(() => {
+        swipeMenu.style.transition = "none";
+      }, 300)
+    }
   }, false)
 }
