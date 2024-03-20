@@ -80,7 +80,6 @@ if (swipeMenu) {
   swipeMenu.addEventListener('touchstart', function (event) {
     if (swipeMenuContainer.scrollTop <= 0) {
       swipeMenuContainer.scrollTo({top: 0});
-      swipeMenuContainer.style.overflow = "hidden";
 
       touchstartY = event.changedTouches[0].screenY;
     }
@@ -89,11 +88,11 @@ if (swipeMenu) {
   swipeMenu.addEventListener('touchmove', function (event) {
     if (swipeMenuContainer.scrollTop <= 0) {
       swipeMenuContainer.scrollTo({top: 0});
-      swipeMenuContainer.style.overflow = "hidden";
 
       movedY = event.changedTouches[0].screenY;
 
       if (movedY - touchstartY > 0) {
+        swipeMenuContainer.style.overflow = "hidden";
         swipeMenu.style.transform = `translateY(${movedY - touchstartY}px)`;
       }
     }
