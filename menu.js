@@ -76,13 +76,17 @@ if (swipeMenu) {
 
 if (swipeMenu) {
   swipeMenu.addEventListener('touchstart', function (event) {
-    if (swipeMenuContainer.scrollTop === 0) {
+    if (swipeMenuContainer.scrollTop <= 0) {
+      swipeMenuContainer.scrollTo({top: 0});
+
       touchstartY = event.changedTouches[0].screenY;
     }
   }, false)
 
   swipeMenu.addEventListener('touchmove', function (event) {
-    if (swipeMenuContainer.scrollTop === 0) {
+    if (swipeMenuContainer.scrollTop <= 0) {
+      swipeMenuContainer.scrollTo({top: 0});
+
       movedY = event.changedTouches[0].screenY;
 
       if (movedY - touchstartY > 0) {
@@ -92,7 +96,9 @@ if (swipeMenu) {
   })
 
   swipeMenu.addEventListener('touchend', function () {
-    if (swipeMenuContainer.scrollTop === 0) {
+    if (swipeMenuContainer.scrollTop <= 0) {
+      swipeMenuContainer.scrollTo({top: 0});
+      
       swipeMenu.style.transition = "all 0.3s ease";
 
       if (movedY - touchstartY > 100) {
