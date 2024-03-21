@@ -32,6 +32,7 @@
   }
 
   .mobile-menu-button {
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -43,49 +44,64 @@
     border-radius: 50%;
   }
 
-  .burger {
-    width: 30px;
-    height: 20px;
-    cursor: pointer;
-    position: relative;
-  }
+  /* <!-- burger --> */
 
-  .burger__line {
-    display: block;
-    width: 100%;
-    height: 2px;
-    background-color: #000;
+  .burger-icon {
     position: absolute;
-    left: 0;
-    transition: .3s all linear;
+    left: 50%;
+    bottom: 50%;
+    transform: translateX(-50%) translateY(50%);
+    width: 32px;
+    height: 24px;
   }
 
-  .burger__line_first {
-    top: 0;
+  .burger-icon span,
+  .burger-icon span:before,
+  .burger-icon span:after {
+    width: 100%;
+    position: absolute;
+    height: 3px;
+    background: #333;
+    display: block;
+    transition: .2s;
+    border-radius: 5px;
   }
 
-  .burger__line_second,
-  .burger__line_third {
-    top: 50%;
-    transform: translateY(-50%);
+  .burger-icon span:before {
+    content: "";
+    top: -10px;
+    transition: top 200ms 200ms, transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .burger__line_fourth {
+  .burger-icon span {
+    top: 10px;
+  }
+
+  .burger-icon span:after {
+    content: "";
+    bottom: -10px;
+    transition: bottom 200ms 200ms, transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .burger-icon span.active:before {
+    content: "";
+    top: 0px;
+    transform: rotate(45deg);
+    transition: top 200ms, transform 200ms 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  }
+
+  .burger-icon span.active:after {
+    content: "";
     bottom: 0;
+    transform: rotate(-45deg);
+    transition: bottom 200ms, transform 200ms 200ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
   }
 
-  .--active .burger__line_first,
-  .--active .burger__line_fourth {
-    opacity: 0;
+  .burger-icon span.active {
+    background: rgba(255, 255, 255, 0);
   }
 
-  .--active .burger__line_second {
-    transform: translateY(-50%) rotate(45deg);
-  }
-
-  .--active .burger__line_third {
-    transform: translateY(-50%) rotate(-45deg);
-  }
+  /* <-- burger --> */
 
   .swipe-menu {
     position: fixed;
@@ -146,11 +162,8 @@
 <body>
   <div class="mobile-menu">
     <div class="mobile-menu-button">
-      <div class="burger">
-        <span class="burger__line burger__line_first"></span>
-        <span class="burger__line burger__line_second"></span>
-        <span class="burger__line burger__line_third"></span>
-        <span class="burger__line burger__line_fourth"></span>
+      <div class="burger-icon">
+        <span></span>
       </div>
     </div>
   </div>
