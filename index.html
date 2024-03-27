@@ -177,8 +177,16 @@
     justify-content: center;
   }
 
+  .phone-widget_bottom {
+    justify-content: flex-end;
+  }
+
   .phone-widget_right {
     right: 0;
+  }
+
+  .phone-widget_left {
+    left: 0;
   }
 
   .phone-widget-c-sitephone-label {
@@ -192,14 +200,18 @@
     transition-duration: 0.7s, 0.7s, 1.4s;
   }
 
-  .phone-widget-js-sitephone-label--shown {
+  .phone-widget_right .phone-widget-js-sitephone-label--hidden {
+    transform: translateX(100px);
+  }
+
+  .phone-widget_left .phone-widget-js-sitephone-label--hidden {
+    transform: translateX(-100px);
+  }
+
+  .phone-widget.phone-widget-js-sitephone-label--shown {
     opacity: 1;
     transition-delay: 0.3s, 0.3s, 0s;
     transform: translateX(0px);
-  }
-
-  .phone-widget-js-sitephone-label--hidden {
-    transform: translateX(100px);
   }
 
   .phone-widget-c-simple-sitephone~* {
@@ -383,9 +395,11 @@
   </div>
 
   <!-- comagic-widget -->
-  <div class="phone-widget phone-widget_middle phone-widget_right">
-    <div
-      class="phone-widget-c-sitephone-label phone-widget-js-sitephone-label--hidden phone-widget-js-sitephone-label--shown">
+  <!-- data-color смена цвета [!] -->
+  <!-- phone-widget_right & phone-widget_left -->
+  <!-- phone-widget_middle & phone-widget_bottom -->
+  <div class="phone-widget phone-widget_middle phone-widget_right" data-color="#409ADD">
+    <div class="phone-widget-c-sitephone-label phone-widget-js-sitephone-label--hidden">
       <i
         class="phone-widget-c-sitephone-label__icon phone-widget-c-sitephone-label__icon--not-shaded phone-widget-c-sitephone-label__icon--sitephone phone-widget-h-sitephone-events-none"></i>
       <div c-ref="trigger" class="phone-widget-c-sitephone-label__bubble phone-widget-c-sitephone-label__bubble--solid">
