@@ -1,8 +1,8 @@
 window.addEventListener("DOMContentLoaded", function () {
   const phoneWidget = document.querySelector(".phone-widget");
   const widgetLabel = document.querySelector(".phone-widget-c-sitephone-label");
-  const phoneWidgetBubble = phoneWidget && phoneWidget.querySelectorAll(".phone-widget-c-sitephone-label__bubble");
-  const phoneWidgetBackground = phoneWidget && phoneWidget.querySelectorAll(".phone-widget-c-sitephone-label__bubble--solid-color");
+  const phoneWidgetBubble = phoneWidget && phoneWidget.querySelectorAll(".phone-widget-label__bubble");
+  const phoneWidgetBackground = phoneWidget && phoneWidget.querySelectorAll(".phone-widget-label__bubble--solid-color");
 
   const color = phoneWidget.dataset.color;
 
