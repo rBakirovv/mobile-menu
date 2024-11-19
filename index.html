@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <!-- Виджет css -->
-  <link rel="stylesheet" href="./widget.css">
+  <!--<link rel="stylesheet" href="./widget.css">-->
 </head>
 
 <style>
@@ -190,6 +190,7 @@
   <!-- data-color смена цвета [!] -->
   <!-- phone-widget_right (справа) / phone-widget_left (слева) -->
   <!-- phone-widget_middle (по центру) / phone-widget_bottom (снизу - если phone-widget_bottom, то задать data-bottom) -->
+  <!--
   <a href="#order" class="phone-widget phone-widget_middle phone-widget_right js-popup-link" data-color="#409ADD" data-bottom="40">
     <div class="phone-widget-c-sitephone-label phone-widget-js-sitephone-label--hidden">
       <i class="phone-widget-sitephone-label__icon phone-widget-sitephone-label__icon--sitephone"></i>
@@ -208,9 +209,17 @@
       </div>
     </div>
   </a>
+  -->
 
   <script src="./menu.js"></script>
   <script src="./phone-widget.js"></script>
+  <script>
+    widgetInit({
+      color: "#FF0000",
+      position: "bottom-right",
+      bottom: 30,
+    });
+  </script>
 </body>
 
 </html>
